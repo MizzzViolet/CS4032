@@ -1,4 +1,3 @@
-#Student no: 12307269
 #python 2 !!!
 
 import socket
@@ -6,7 +5,6 @@ import socket
 def connect():
     
     tcpSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    #N.B. Please ping seanlth.duckdns.org if this ip address stops working. Then just change the address to the new one.
     result = tcpSocket.connect(('0.0.0.0',8000))
 
     message = raw_input()
