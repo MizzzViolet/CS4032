@@ -25,8 +25,6 @@ def handler(clientSocket, clientAddress, PORT):
     print "\nConnection ended: " + clientAddress
     clientSocket.close()
 
-
-
 if __name__ == "__main__":
 
     tcpSocket = socket(AF_INET, SOCK_STREAM)
@@ -48,4 +46,5 @@ if __name__ == "__main__":
         except socket.error, msg:
             print "Socket error! %s" % msg
             break
+
     tcpSocket.close()
