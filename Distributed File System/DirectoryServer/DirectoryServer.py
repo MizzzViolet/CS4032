@@ -21,7 +21,7 @@ class DirectoryServer():
         while True:
             try:
                 connection, address = tcpSocket.accept()
-                print "connection from ", address
+                print "Connection from ", address
                 self.semaphore.acquire()
                 start_new_thread(self.handler, (connection,))
             except KeyboardInterrupt:
@@ -38,7 +38,7 @@ class DirectoryServer():
             while not dead:
                 data = connection.recv(1024)
                 command = data.split(" ", 1)[0]
-                if len(data.split(" ", 1)) > 1:
+                if (len(data.split(" ", 1)) > 1):
                     param = data.split(" ", 1)[1]
                 else :
                     param = ""
