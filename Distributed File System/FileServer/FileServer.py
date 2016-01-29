@@ -24,7 +24,6 @@ class FileServer():
         tcpSocket.bind((self.host, self.port))
         tcpSocket.listen(100)
         print "Listening"
-        
         while True:
             try:
                 connection, address = tcpSocket.accept()
