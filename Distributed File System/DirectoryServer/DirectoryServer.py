@@ -13,7 +13,7 @@ class DirectoryServer():
 
     def run(self):
         tcpSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        tcpSocket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+        tcpSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         tcpSocket.bind((self.host, self.port))
         tcpSocket.listen(100)
         print "Directory Server: {}, {}:{}".format(self.name,self.host,self.port)
