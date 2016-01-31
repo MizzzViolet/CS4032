@@ -1,7 +1,5 @@
-import socket
+import socket, os, threading
 from thread import *
-import threading
-import os
 
 class LockingServer():
 
