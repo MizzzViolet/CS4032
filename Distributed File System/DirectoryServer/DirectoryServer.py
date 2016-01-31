@@ -35,13 +35,13 @@ class DirectoryServer():
         try:
             dead = False
             response = ""
+            param = ""
+            
             while not dead:
                 data = connection.recv(1024)
                 command = data.split(" ", 1)[0]
                 if (len(data.split(" ", 1)) > 1):
                     param = data.split(" ", 1)[1]
-                else :
-                    param = ""
                 if command == "NULL":
                     response = "OK: NAME={} HOST={} PORT={}".format(self.name, self.host, self.port)
                 elif command == "SEARCH":

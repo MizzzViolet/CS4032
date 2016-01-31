@@ -27,7 +27,7 @@ class FileServer():
         while True:
             try:
                 connection, address = tcpSocket.accept()
-                print "connectionection from ", address
+                print "Connection from ", address
                 self.semaphore.acquire()
                 start_new_thread(self.handler, (connection,))
             except KeyboardInterrupt:
@@ -41,14 +41,14 @@ def handler(self, connection):
     try:
         dead = False
         response = ""
+        param =""
         handlerfiles = FileServer(self.fileLoc)
+        
         while not dead:
             data = connection.recv(1024)
             command = data.split(" ", 1)[0]
             if (len(data.split(" ", 1)) > 1):
                 param = data.split(" ", 1)[1]
-            else:
-                param =""
             if command == "NULL":
                 response = "OK: NAME={} HOST={} PORT={}".format(self.name, self.host, self.port)
             elif command == "CREATE":
