@@ -9,7 +9,6 @@ from messages import JOINED_CHATROOM_MESSAGE,ERROR_MESSAGE, LEFT_CHATROOM_MESSAG
 def route_message(connection, data):
   #use logging to track events 
   logging.info("Routing message: " + repr(data))
-
   try:
     if data[:13] == "JOIN_CHATROOM":
     	logging.info("Client joined chatroom")
@@ -36,7 +35,6 @@ def route_message(connection, data):
     elif data[:] == "DISCONNECT":
       	logging.info("Client disconnectionected")
  		connection.close()
-
     else:
       client_error(connection, error_codes.BAD_MESSAGE, "Couldn't parse message")
 
@@ -53,19 +51,17 @@ def client_error(connection, code, reason):
   connection.sendall(message)
 
 def run_server(port, max_worker_threads=10, max_queue_size=100):
-  host = 'localhost'
+  host = "0.0.0.0"
   tcpSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
   tcpSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
   q = Queue.Queue(maxsize=max_queue_size)
   threads = []
 
 	def handler(queue):
-	    BUFFER_SIZE = 8000
-
 	    while True:
 	      connection, address = queue.get()
 	      logging.info("Thread recieved connectionection from queue from addressess %s:%d" % (address[0], address[1]))
-	      data = connection.recv(BUFFER_SIZE) 
+	      data = connection.recv(8000)
 	      route_message(connection, data)
 
 	try:
